@@ -2,7 +2,8 @@
 pmodload 'helper'
 
 CURRENT_BG='NONE'
-SEGMENT_SEPARATOR='⮀'
+#SEGMENT_SEPARATOR='⮀'
+SEGMENT_SEPARATOR=''
 
 
 # Begin a segment
@@ -70,7 +71,9 @@ function prompt_paradox_precmd {
   unsetopt XTRACE KSH_ARRAYS
 
   # Get Git repository information.
-  if (( $+functions[git-info] )); then
+  if (( $+functions[vcs_info] )); then
+    vcs_info
+  elif (( $+functions[git-info] )); then
     git_status=git-info
   fi
   timer_result=$(($SECONDS-$start_time))
@@ -115,7 +118,7 @@ function prompt_paradox_setup {
 
   # Define prompts.
   PROMPT='%{%f%b%k%}$(build_prompt) '
-  RPS1="[%j - %T]"
+  RPS1="\${vcs_info_msg_0_}[%j - %T]"
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
 
