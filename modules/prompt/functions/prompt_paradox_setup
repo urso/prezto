@@ -35,11 +35,8 @@ prompt_end() {
 
 function build_prompt {
   local bg1 bg2
-  #bg1=253
-  #bg2=235
-  #bg1=white
-  bg1=240
-  bg2=black
+  bg1=253; bg2=245
+  #bg1=240; bg2=black
 
   prompt_segment $bg1 black '%(1?;%{%F{red}%}✘ ;)%(!;%{%F{yellow}%}⚡ ;)%(1j;%{%F{cyan}%}%j⚙ ;)%{%M%}'
   prompt_segment $bg2 default '%2~'
